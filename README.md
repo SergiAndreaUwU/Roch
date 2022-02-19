@@ -13,4 +13,4 @@ Proyecto punto de venta touch para restaurante.
 ## Tecnologías
 - FrontEnd React.js
 - BackEnd Node.js
-- Manejador de base de datos MySQL.
+- Manejador de base de datos MoongoDB.
