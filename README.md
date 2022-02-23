@@ -11,6 +11,20 @@ Proyecto punto de venta touch para restaurante.
 - [Mockup](https://app.moqups.com/PyAIEL5NpLP6ojEEzWsjwTCLZ8lxeN4F/view/page/ad64222d5)
 
 ## Tecnologías
-- FrontEnd React.js
-- BackEnd Node.js
-- Manejador de base de datos MoongoDB.
+### FrontEnd
+- React.js
+- Redux
+- Bootstrap
+- Jest
+- HTML5
+- CSS3
+#### Libraries and dependencies
+- Axios
+- react-bootstrap
+- react-redux
+- SASS
+- react-router
+### BackEnd
+- Node.js + Express
+### Database
+- MongoDB
