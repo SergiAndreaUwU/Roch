@@ -22,6 +22,8 @@ Proyecto punto de venta touch para restaurante.
 - Axios
 - react-bootstrap
 - react-redux
+- SASS
+- react-router
 ### BackEnd
 - Node.js + Express
 ### Database
