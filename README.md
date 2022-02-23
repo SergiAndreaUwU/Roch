@@ -14,11 +14,14 @@ Proyecto punto de venta touch para restaurante.
 ### FrontEnd
 - React.js
 - Redux
+- Bootstrap
 - Jest
 - HTML5
 - CSS3
 #### Libraries and dependencies
 - Axios
+- react-bootstrap
+- react-redux
 ### BackEnd
 - Node.js + Express
 ### Database
