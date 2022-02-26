@@ -7,7 +7,13 @@ const Right = () => {
     <div className={styles.right}>
       <Outlet />
 
-      <div>cobrar</div>
+      <div className={styles.containerCobrar}>
+        <button className={styles.cobrarButton}>
+          $
+          <br />
+          COBRAR
+        </button>
+      </div>
     </div>
   );
 };

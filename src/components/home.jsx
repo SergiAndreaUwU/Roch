@@ -3,7 +3,7 @@ import styles from "./home.module.sass";
 import Catalogo from "./Catalogo/catalogo";
 import Menu from "./Menu/menu";
 import Header from "./header";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, Navigate } from "react-router-dom";
 import ButtonList from "./Menu/Right/buttonList";
 
 const Home = () => {
@@ -30,7 +30,11 @@ const Home = () => {
         <Route path="menu" element={<Menu />}>
           <Route path="categoria" element={<ButtonList data={[1,2,3,4,5]} />} />
           <Route path="productos" element={<ButtonList data={[1,2,3,4,5,6,7,8,9,10,11,12,13]}/>} />
+          <Route path="/menu" element={<Navigate to="/menu/categoria"/>} />
+
+
         </Route>
+
         <Route path="*" element={<Catalogo />} />
       </Routes>
     </div>
