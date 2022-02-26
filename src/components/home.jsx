@@ -28,11 +28,9 @@ const Home = () => {
       <Routes>
         <Route path="catalogo" element={<Catalogo />} />
         <Route path="menu" element={<Menu />}>
-          <Route path="categoria" element={<ButtonList data={[1,2,3,4,5]} />} />
-          <Route path="productos" element={<ButtonList data={[1,2,3,4,5,6,7,8,9,10,11,12,13]}/>} />
+          <Route path="categoria" element={<ButtonList key={"categoriaEl"}/>} />
+          <Route path="productos" element={<ButtonList key={"productosEl"}/>} />
           <Route path="/menu" element={<Navigate to="/menu/categoria"/>} />
-
-
         </Route>
 
         <Route path="*" element={<Catalogo />} />
