@@ -1,8 +1,9 @@
 import React from 'react'
+import styles from "./catalogo.module.sass"
 
 const Catalogo = () => {
   return (
-    <div>catalogo</div>
+    <div className={styles.categoria}>categoria</div>
   )
 }
 

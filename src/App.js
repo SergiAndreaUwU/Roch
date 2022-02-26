@@ -1,4 +1,5 @@
 import Home from "./components/home"
+
 import "./App.sass"
 
 function App() {

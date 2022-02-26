@@ -1,0 +1,44 @@
+$flexBasisLeft: 42.78%
+$marginLeftButton: 11px
+$marginTopButton: 8px
+
+
+.menu
+    width: 100%
+    height: 100%
+    padding-left: 7px
+    padding-right: 5px
+    padding-bottom: 15px
+    background-color: gray
+    border: 1px solid black
+    display: flex
+    flex-direction: row
+    flex-wrap: nowrap
+
+.left
+    flex-basis: $flexBasisLeft
+    border: 1px solid black
+    background-color: rgb(222, 222, 222)
+.right
+    flex-basis: calc(100% - $flexBasisLeft)
+    border: 1px dashed white
+
+    display: flex
+    flex-direction: column
+    flex-wrap: nowrap
+    .buttonsContainer
+        color: red
+        flex-basis: 66.5%
+        border: 1px solid red
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+
+        overflow-y: scroll
+        .button
+            height: calc(33% - $marginTopButton)
+            width: calc(25% - $marginLeftButton)
+            margin-top: $marginTopButton
+            margin-left: $marginLeftButton
+            text-align: center
+            border: 1px solid red
