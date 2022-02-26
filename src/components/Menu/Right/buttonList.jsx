@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../menu.module.sass";
 import { useNavigate } from "react-router-dom";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
 const ButtonList = ({ data }) => {
   //let bc documentation
@@ -10,7 +10,9 @@ const ButtonList = ({ data }) => {
   const arrPaths = window.location.pathname.split("/");
   const currentPath = arrPaths[arrPaths.length - 1];
   console.log(currentPath);
-  const [stateData,setStateData]=useState([])
+  const [stateData, setStateData] = useState([]);
+
+  let paramProducto = "";
 
   const handleProducts = () => {};
   const handleCategories = () => {
@@ -34,13 +36,16 @@ const ButtonList = ({ data }) => {
     }
   };
 
-  const loadProductos=()=>{
-    setStateData([1,2,3,4,5,6,7,8,9,10,11,12,13])
-  }
+  const loadProductos = () => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    paramProducto = urlParams.get("producto");
+    setStateData([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]);
+  };
 
-  const loadCategorias=()=>{
-    setStateData([1,2,3,4,5])
-  }
+  const loadCategorias = () => {
+    setStateData([1, 2, 3, 4, 5]);
+  };
 
   useEffect(() => {
     switch (currentPath) {

@@ -14,7 +14,7 @@ const Home = () => {
         <button>
           <Link to="/catalogo">catalogo</Link>
         </button>
-        <button>
+        <button className="icon-button">
           <Link to="/menu">menu</Link>
         </button>
         <button>
