@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import styles from "./menu.module.sass";
+import Left from "./Left/left";
+import Right from "./Right/right";
 
 const Menu = () => {
   return (
-    <div>menu</div>
-  )
-}
+    <div className={styles.menu}>
+      <Left />
+      <Right />
+    </div>
+  );
+};
 
-export default Menu
+export default Menu;

@@ -1,0 +1,69 @@
+//CONSTANTS
+$marginLeftButton: 11px
+$marginTopButton: 8px
+$heightButtons: 66.5%
+$flexBasisLeft: 42.78%
+
+.menu
+    width: 100%
+    height: 100%
+    padding-left: 7px
+    padding-right: 5px
+    padding-bottom: 15px
+    background-color: gray
+    border: 1px solid black
+    display: flex
+    flex-direction: row
+    flex-wrap: nowrap
+
+.left
+    flex-basis: $flexBasisLeft
+    border: 1px solid black
+    background-color: rgb(222, 222, 222)
+.right
+    flex-basis: calc(100% - $flexBasisLeft)
+    border: 1px dashed white
+
+    display: flex
+    flex-direction: column
+    flex-wrap: nowrap
+    .buttonsContainer
+        color: red
+        flex-basis: $heightButtons
+        border: 1px solid red
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+        align-content: flex-start
+
+        overflow-y: scroll
+        .button
+            //GRID LIKE
+            height: calc(30% - $marginTopButton)
+            width: calc(25% - $marginLeftButton)
+            margin-top: $marginTopButton
+            margin-left: $marginLeftButton
+            //END GRID LIKE
+            text-align: center
+            border: 1px solid red
+            cursor: pointer
+            background-color: rgb(222, 222, 222)
+            &:hover
+                background-color: rgba(163, 163, 163,.80)
+
+    .containerCobrar
+        flex-basis: calc(100% - $heightButtons)
+        flex-direction: row
+        flex-wrap: wrap
+        position: relative
+        .cobrarButton
+            //GRID LIKE
+            height: calc(60% - $marginTopButton)
+            width: calc(25% - $marginLeftButton)
+            position: absolute
+            // margin-top: 14%
+            top: 30%
+            left: $marginLeftButton
+            //END GRID LIKE
+            text-align: center
+            border: 1px solid red
