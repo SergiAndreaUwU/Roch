@@ -9,9 +9,9 @@ const ButtonList = ({ data }) => {
   let navigate = useNavigate();
   const arrPaths = window.location.pathname.split("/");
   const currentPath = arrPaths[arrPaths.length - 1];
-  console.log(currentPath);
   const [stateData, setStateData] = useState([]);
 
+  // eslint-disable-next-line no-unused-vars
   let paramProducto = "";
 
   const handleProducts = () => {};
