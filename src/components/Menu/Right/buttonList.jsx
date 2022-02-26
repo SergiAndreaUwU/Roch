@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import styles from "../menu.module.sass";
 
-const ButtonList = () => {
+const ButtonList = ({ data }) => {
   return (
-    <div>ButtonList</div>
-  )
-}
+    <div className={styles.buttonsContainer}>
+      {data.map((el) => (
+        <div className={styles.button}>a</div>
+      ))}
+    </div>
+  );
+};
 
-export default ButtonList
+export default ButtonList;
