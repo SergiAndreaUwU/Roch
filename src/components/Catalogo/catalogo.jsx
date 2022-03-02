@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./catalogo.module.sass";
 import { AgGridReact } from "ag-grid-react";
 import { useState, useRef, useCallback } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 const Catalogo = () => {
   const agGrid = useRef();
@@ -73,4 +75,17 @@ const Catalogo = () => {
   );
 };
 
-export default Catalogo;
+function mapStateToProps(state) {
+  return {
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+    }
+  };
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Catalogo);

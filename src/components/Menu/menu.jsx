@@ -2,6 +2,9 @@ import React from "react";
 import styles from "./menu.module.sass";
 import Left from "./Left/left";
 import Right from "./Right/right";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
 
 const Menu = () => {
   return (
@@ -12,4 +15,20 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+function mapStateToProps(state) {
+  return {
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+      
+    }
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Menu);
