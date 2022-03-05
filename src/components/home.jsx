@@ -5,6 +5,8 @@ import Menu from "./Menu/menu";
 import Header from "./header";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 import ButtonList from "./Menu/Right/buttonList";
+import { useEffect } from "react";
+import { connect } from "react-redux";
 
 const Home = () => {
   return (
@@ -13,15 +15,11 @@ const Home = () => {
         <button>
           <Link to="/catalogo">catalogo</Link>
         </button>
-        <button className="icon-button">
-          <Link to="/menu">menu</Link>
+
+        <button >
+          <Link to="/menu/categoria">menu</Link>
         </button>
-        <button>
-          <Link to="/menu/categoria">categoria</Link>
-        </button>
-        <button>
-          <Link to="/menu/productos">productos</Link>
-        </button>
+
       </div>
 
       <Routes>
@@ -46,4 +44,11 @@ const Home = () => {
   );
 };
 
-export default Home;
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+    }
+  };
+}
+
+export default connect(()=>{},mapDispatchToProps)(Home);
