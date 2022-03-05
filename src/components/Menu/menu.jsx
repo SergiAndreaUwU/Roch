@@ -1,17 +1,41 @@
 import React from "react";
 import styles from "./menu.module.sass";
-import Left from "./Left/left";
 import Right from "./Right/right";
+import { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as shopListActions from "../../redux/actions/shopListActions";
 
-
-
-const Menu = () => {
+const Menu = ({ addToShopList, deleteFromShopList, resetShopList }) => {
   return (
     <div className={styles.menu}>
-      <Left />
+      {/* left */}
+      <div className={styles.left}></div>
+      {/* end left */}
       <Right />
     </div>
   );
 };
 
-export default Menu
+function mapStateToProps(state) {
+  return {
+    categories: state.categories,
+    selectedCatalogueCategory: state.selectedCatalogueCategory,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addToShopListWithIndex: bindActionCreators(
+      shopListActions.addToShopListWithIndex,
+      dispatch
+    ),
+    deleteFromShopListWithIndex: bindActionCreators(
+      shopListActions.deleteFromShopListWithIndex,
+      dispatch
+    ),
+    resetShopList: bindActionCreators(shopListActions.resetShopList, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

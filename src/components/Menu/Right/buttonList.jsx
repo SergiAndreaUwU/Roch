@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateSelectedMenuCategory } from "../../../redux/actions/selectedMenuCategoryAction";
+import * as shopListActions from "../../../redux/actions/shopListActions";
 
 const ButtonList = ({
   selectedCatalogueCategory,
   updateSelectedMenuCategory,
   categories,
+  addToShopList,
 }) => {
   //let bc documentation
   //https://reactrouter.com/docs/en/v6/getting-started/overview#navigation
@@ -21,7 +23,10 @@ const ButtonList = ({
   // eslint-disable-next-line no-unused-vars
   let paramProductoId = "";
 
-  const handleProducts = (selected, index) => {};
+  const handleProducts = (selected, index) => {
+    console.log(selected);
+    addToShopList(selected);
+  };
 
   const handleCategories = (selected, index) => {
     updateSelectedMenuCategory({ id: index, hasUserSelected: true });
@@ -98,7 +103,7 @@ const ButtonList = ({
             handleClick(el, index);
           }}
         >
-          a
+          {el.nombre}
         </button>
       ))}
     </div>
@@ -118,6 +123,7 @@ function mapDispatchToProps(dispatch) {
       updateSelectedMenuCategory,
       dispatch
     ),
+    addToShopList: bindActionCreators(shopListActions.addToShopList, dispatch),
   };
 }
 
