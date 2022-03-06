@@ -8,6 +8,9 @@ $marginTopButton: 8px
 $heightButtons: 66.5%
 $flexBasisLeft: 42.78%
 
+$shopInfoHeight:15vh
+
+
 .menu
     width: 100%
     height: calc(100% - $heightHomeHeader)
@@ -42,15 +45,17 @@ $flexBasisLeft: 42.78%
 
     .reservedSpace
         width: 99%
-        height: 50px
+        height: $shopInfoHeight
 
     .shopInfo
         background-color: red
-        width: 100px
-        height: 50px
+        width: 300px
+        height: $shopInfoHeight
         position: absolute
         right: 0%
         bottom: 0%
+
+        font-size: 1.5rem
 
 .right
     flex-basis: calc(100% - $flexBasisLeft)
