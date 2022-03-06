@@ -25,20 +25,10 @@ const HeaderButtons = ({
   };
 
   const redirect = () => {
-    debugger
-    switch (currentPath) {
-      case "catalogo": {
-        navigate(`/menu/categoria`);
-
-        break;
-      }
-      case "categoria": {
-        navigate(`/catalogo`);
-
-        break;
-      }
-      default: {
-      }
+    if (currentPath === "catalogo") {
+      navigate(`/menu/categoria`);
+    } else {
+      navigate(`/catalogo`);
     }
   };
 
@@ -46,7 +36,6 @@ const HeaderButtons = ({
     const arrPaths = window.location.pathname.split("/");
     const cPath = arrPaths[arrPaths.length - 1];
     setCurrentPath(cPath);
-    debugger;
   });
 
   return (
