@@ -11,17 +11,6 @@ import { connect } from "react-redux";
 const Home = () => {
   return (
     <div className={styles.home}>
-      <div style={{ position: "absolute", top: "0%", left: "50%" }}>
-        <button>
-          <Link to="/catalogo">catalogo</Link>
-        </button>
-
-        <button >
-          <Link to="/menu/categoria">menu</Link>
-        </button>
-
-      </div>
-
       <Routes>
         <Route path="/" element={<Header />}>
           <Route path="catalogo" element={<Catalogo />} />

@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React from "react";
 import styles from "./header.module.sass";
 import { FaUserCheck, FaArrowLeft } from "react-icons/fa";
@@ -6,20 +7,47 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const HeaderButtons = ({
   selectedMenuCategory,
   updateSelectedMenuCategory,
 }) => {
   let navigate = useNavigate();
+  const [currentPath, setCurrentPath] = useState("");
 
-  const redirect = () => {
+  const redirectBackwards = () => {
     navigate(`/menu/categoria`);
     updateSelectedMenuCategory({
       selectedMenuCategory: 0,
       hasUserSelected: false,
     });
   };
+
+  const redirect = () => {
+    debugger
+    switch (currentPath) {
+      case "catalogo": {
+        navigate(`/menu/categoria`);
+
+        break;
+      }
+      case "categoria": {
+        navigate(`/catalogo`);
+
+        break;
+      }
+      default: {
+      }
+    }
+  };
+
+  useEffect(() => {
+    const arrPaths = window.location.pathname.split("/");
+    const cPath = arrPaths[arrPaths.length - 1];
+    setCurrentPath(cPath);
+    debugger;
+  });
 
   return (
     <div className={styles.containerButtonsHeader}>
@@ -37,7 +65,7 @@ const HeaderButtons = ({
       <div className={styles.right}>
         <div style={{ flexBasis: "25%" }}>
           {selectedMenuCategory.hasUserSelected && (
-            <button className="icon-button" onClick={redirect}>
+            <button className="icon-button" onClick={redirectBackwards}>
               <FaArrowLeft className="icon-size" />
             </button>
           )}
@@ -46,10 +74,16 @@ const HeaderButtons = ({
           className="icon-button"
           style={{ flexBasis: "50%", display: "flex" }}
         >
-          <span style={{ margin: "auto" }}>CATEGORIA</span>
+          <span style={{ margin: "auto" }}>{currentPath.toUpperCase()}</span>
         </div>
-        <div style={{ flexBasis: "25%",display:"flex" }}>
-          <button className="icon-button" style={{marginLeft:"auto"}}>Cátalogo</button>
+        <div style={{ flexBasis: "25%", display: "flex" }}>
+          <button
+            className="icon-button"
+            style={{ marginLeft: "auto" }}
+            onClick={redirect}
+          >
+            {currentPath == "catalogo" ? "CATEGORIA" : "CATALOGO"}
+          </button>
         </div>
       </div>
     </div>
