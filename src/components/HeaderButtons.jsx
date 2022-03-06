@@ -17,11 +17,9 @@ const HeaderButtons = ({
   const [currentPath, setCurrentPath] = useState("");
 
   const redirectBackwards = () => {
-    navigate(`/menu/categoria`);
-    updateSelectedMenuCategory({
-      selectedMenuCategory: 0,
-      hasUserSelected: false,
-    });
+    if (currentPath === "productos") {
+      navigate(`/menu/categoria`);
+    } 
   };
 
   const redirect = () => {
@@ -53,7 +51,7 @@ const HeaderButtons = ({
       </div>
       <div className={styles.right}>
         <div style={{ flexBasis: "25%" }}>
-          {selectedMenuCategory.hasUserSelected && (
+          {currentPath === "productos" && (
             <button className="icon-button" onClick={redirectBackwards}>
               <FaArrowLeft className="icon-size" />
             </button>
