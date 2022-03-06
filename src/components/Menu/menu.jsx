@@ -30,8 +30,13 @@ const Menu = ({
     <div className={styles.menu}>
       {/* left */}
       <div className={styles.left}>
-        <div class={styles.shopListContainer}>
-          <div class={styles.shopList}>
+        <div className={styles.shopListContainer}>
+          <div className={styles.shopList}>
+            <div className={styles.ticketHeader}>
+              <div className={styles.cajero}>Cajero:</div>
+              <div className={styles.noTicket}>No.Ticket:</div>
+            </div>
+            <div className={styles.ticketBody}></div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
             vitae urna malesuada, ultricies enim non, ullamcorper lacus. Nunc
             feugiat bibendum purus, dapibus fringilla elit volutpat sit amet.
@@ -61,7 +66,7 @@ const Menu = ({
             mi diam interdum velit, non mattis magna ligula quis ligula. Nullam
             dapibus mattis mattis. Nullam justo lectus, pellentesque ut est id,
             ultrices luctus erat. Ut viverra vestibulum ante vitae dignissim.
-            Mauris non tortor semper, efficitur nisi nec, cursus odio. Class
+            Mauris non tortor semper, efficitur nisi nec, cursus odio. className
             aptent taciti sociosqu ad litora torquent per conubia nostra, per
             inceptos himenaeos. Nunc eu ultrices quam, at consectetur purus. Nam
             consectetur ante in ullamcorper dapibus. Aliquam efficitur ac tortor
@@ -99,7 +104,7 @@ const Menu = ({
             mi diam interdum velit, non mattis magna ligula quis ligula. Nullam
             dapibus mattis mattis. Nullam justo lectus, pellentesque ut est id,
             ultrices luctus erat. Ut viverra vestibulum ante vitae dignissim.
-            Mauris non tortor semper, efficitur nisi nec, cursus odio. Class
+            Mauris non tortor semper, efficitur nisi nec, cursus odio. className
             aptent taciti sociosqu ad litora torquent per conubia nostra, per
             inceptos himenaeos. Nunc eu ultrices quam, at consectetur purus. Nam
             consectetur ante in ullamcorper dapibus. Aliquam efficitur ac tortor
@@ -109,12 +114,15 @@ const Menu = ({
             aliquet eros, in imperdiet eros. Integer aliquam aliquam nibh vitae
             cursus. Duis id rutrum erat.
           </div>
-          <div class={styles.reservedSpace}></div>
+          <div className={styles.reservedSpace}></div>
         </div>
-        <div class={styles.shopInfo}>
+        <div className={styles.shopInfo}>
           Paga: {paymentInfo.payedWith}
           <br />
-          Cambio: {paymentInfo.payedWith - paymentInfo.totalPrice >=0? (paymentInfo.payedWith - paymentInfo.totalPrice).toFixed(2):"0"}
+          Cambio:{" "}
+          {paymentInfo.payedWith - paymentInfo.totalPrice >= 0
+            ? (paymentInfo.payedWith - paymentInfo.totalPrice).toFixed(2)
+            : "0"}
           <br />
           Total:{paymentInfo.totalPrice}
         </div>

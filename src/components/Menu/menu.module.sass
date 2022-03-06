@@ -1,15 +1,12 @@
 @import "/src/constants.sass"
 
-
-    
 //CONSTANTS
 $marginLeftButton: 11px
 $marginTopButton: 8px
 $heightButtons: 66.5%
 $flexBasisLeft: 42.78%
 
-$shopInfoHeight:15vh
-
+$shopInfoHeight: 15vh
 
 .menu
     width: 100%
@@ -42,6 +39,23 @@ $shopInfoHeight:15vh
     .shopList
         border: 1px solid black
         width: 99%
+        display: flex
+        flex-direction: column
+        flex-wrap: nowrap
+        font-size: 1.2rem
+
+        .ticketHeader
+            flex-basis: 5%
+            display: flex
+            flex-direction: row
+            flex-wrap: nowrap
+            .cajero
+                flex-basis: 50%
+            .noTicket
+                flex-basis: 50%
+
+        .ticketBody
+            flex-basis: 95%
 
     .reservedSpace
         width: 99%
