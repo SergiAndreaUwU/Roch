@@ -2,6 +2,7 @@
 import React from "react";
 import styles from "./header.module.sass";
 import { FaUserCheck, FaArrowLeft } from "react-icons/fa";
+import {AiFillPrinter} from "react-icons/ai"
 import { updateSelectedMenuCategory } from "../redux/actions/selectedMenuCategoryAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -9,11 +10,20 @@ import { bindActionCreators } from "redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import { useReactToPrint } from 'react-to-print';
+
+
 const HeaderButtons = ({
+  ticketRef,
+  //redux
   selectedMenuCategory,
   updateSelectedMenuCategory,
 }) => {
   let navigate = useNavigate();
+  const handlePrint = useReactToPrint({
+    content: () => ticketRef.current,
+  });
+
   const [currentPath, setCurrentPath] = useState("");
 
   const redirectBackwards = () => {
@@ -45,8 +55,8 @@ const HeaderButtons = ({
         <button className="icon-button" style={{ marginRight: "13px" }}>
           <FaUserCheck className="icon-size" />
         </button>
-        <button className="icon-button">
-          <FaUserCheck className="icon-size" />
+        <button className="icon-button" onClick={handlePrint}>
+          <AiFillPrinter className="icon-size" />
         </button>
       </div>
       <div className={styles.right}>
