@@ -1,12 +1,16 @@
+@import "/src/constants.sass"
+
 //CONSTANTS
 $marginLeftButton: 11px
 $marginTopButton: 8px
 $heightButtons: 66.5%
 $flexBasisLeft: 42.78%
 
+$shopInfoHeight: 15vh
+
 .menu
     width: 100%
-    height: 100%
+    height: calc(100% - $heightHomeHeader)
     padding-left: 7px
     padding-right: 5px
     padding-bottom: 15px
@@ -19,7 +23,55 @@ $flexBasisLeft: 42.78%
 .left
     flex-basis: $flexBasisLeft
     border: 1px solid black
-    background-color: rgb(222, 222, 222)
+    background-color: purple
+
+    background-color: blue
+    width: 100%
+    height: 100%
+    position: relative
+    .shopListContainer
+        background-color: rgb(222, 222, 222)
+
+        width: 100%
+        height: 100%
+        overflow-y: scroll
+
+    .shopList
+        border: 1px solid black
+        width: 99%
+        display: flex
+        flex-direction: column
+        flex-wrap: nowrap
+        font-size: 1.2rem
+
+        .ticketHeader
+            flex-basis: 5%
+            display: flex
+            flex-direction: row
+            flex-wrap: nowrap
+            .cajero
+                flex-basis: 50%
+            .noTicket
+                flex-basis: 50%
+                display: flex
+
+        .ticketBody
+            flex-basis: 95%
+
+    .reservedSpace
+        width: 99%
+        height: $shopInfoHeight
+
+    .shopInfo
+        background-color: red
+        width: 300px
+        height: $shopInfoHeight
+        position: absolute
+        right: 0%
+        bottom: 0%
+
+        font-size: 1.5rem
+
 .right
     flex-basis: calc(100% - $flexBasisLeft)
     border: 1px dashed white

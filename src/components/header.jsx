@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./header.module.sass";
 import { Outlet } from "react-router-dom";
 import HeaderButtons from "./HeaderButtons";
-const Header = () => {
+const Header = ({ticketRef}) => {
   return (
     <>
     <div className={styles.header}>
@@ -11,7 +11,7 @@ const Header = () => {
       </div>
       {/* create new component to avoid render issues
       see tree component (headerButtons) */}
-      <HeaderButtons/>
+      <HeaderButtons ticketRef={ticketRef}/>
       {/*end of create new component to avoid render issues
       see tree component */}
     </div>
