@@ -33,5 +33,14 @@ export default {
   ],
   selectedMenuCategory: { id: 0, hasUserSelected: false },
   selectedCatalogueCategory: { id: 0, hasUserSelected: false },
-  shopList: [{ id: 13, nombre: "product10", price: 15.99, quantity: 2 },{ id: 10, nombre: "product1", price: 5.99,quantity: 5 }],
+  shopList: [
+    { id: 13, nombre: "product10", price: 15.99, quantity: 2 },
+    { id: 10, nombre: "product1", price: 5.99, quantity: 5 },
+  ],
+  alreadyPayed: false,
+  paymentInfo: {
+    totalPrice: 0.0,
+    payedWith: 0.0,
+  },
+  noTicket:1
 };

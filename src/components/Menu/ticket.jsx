@@ -2,18 +2,24 @@ import React from "react";
 import styles from "./menu.module.sass";
 
 //forwardRef required for printing
-export const ComponentToPrint = React.forwardRef((props, ref) => {
+export const Ticket = React.forwardRef(({ noTicket,cajeroNombre }, ref) => {
   return (
     <div className={styles.shopList} ref={ref}>
-        <div className={styles.ticketHeader}>
-          <div className={styles.cajero}>Cajero:</div>
-          <div className={styles.noTicket}>No.Ticket:</div>
+      <div className={styles.ticketHeader}>
+        <div className={styles.cajero}><span style={{fontWeight:"bold",marginRight:"10px"}}>Cajero:</span>{cajeroNombre}</div>
+        <div className={styles.noTicket}>
+          <div style={{ flexBasis: "20%",fontWeight:"bold",marginRight:"10px" }}>No.Ticket:</div>
+          <div style={{ flexBasis: "50%", textAlign: "right" }}>{noTicket}</div>
         </div>
-      <div className={styles.ticketBody} style={{display:"flex",flexFlow:"row wrap"}}>
+      </div>
+      <div
+        className={styles.ticketBody}
+        style={{ display: "flex", flexFlow: "row wrap" }}
+      >
         {" "}
-        {[1,2,3,4,5,6,7].map((el)=><div style={{width:"33.3%",border:"1px solid red"}}>{el}</div>)}
-
-
+        {[1, 2, 3, 4, 5, 6, 7].map((el) => (
+          <div style={{ width: "33.3%", border: "1px solid red" }}>{el}</div>
+        ))}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae
         urna malesuada, ultricies enim non, ullamcorper lacus. Nunc feugiat
         bibendum purus, dapibus fringilla elit volutpat sit amet. Quisque

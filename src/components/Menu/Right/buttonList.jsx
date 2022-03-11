@@ -6,12 +6,15 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateSelectedMenuCategory } from "../../../redux/actions/selectedMenuCategoryAction";
 import * as shopListActions from "../../../redux/actions/shopListActions";
+import * as alreadyPayedActions from "../../../redux/actions/alreadyPayedActions";
 
 const ButtonList = ({
   selectedCatalogueCategory,
   updateSelectedMenuCategory,
   categories,
   addToShopList,
+  alreadyPayed,
+  updateAlreadyPayed,
 }) => {
   //let bc documentation
   //https://reactrouter.com/docs/en/v6/getting-started/overview#navigation
@@ -25,6 +28,16 @@ const ButtonList = ({
 
   const handleProducts = (selected, index) => {
     console.log(selected);
+    if (alreadyPayed) {
+      //increment number ticket, reset shop list
+      //and continue
+
+      //otherwise
+
+      //lock actions until NEW TICKET button in headerbuttons is pressed
+      //this will set alreadyPayed to false and will skip this condition block
+      return;
+    }
     addToShopList(selected);
   };
 
@@ -114,6 +127,7 @@ function mapStateToProps(state) {
   return {
     categories: state.categories,
     selectedCatalogueCategory: state.selectedCatalogueCategory,
+    alreadyPayed: state.alreadyPayed,
   };
 }
 
@@ -124,6 +138,11 @@ function mapDispatchToProps(dispatch) {
       dispatch
     ),
     addToShopList: bindActionCreators(shopListActions.addToShopList, dispatch),
+    updateAlreadyPayed: bindActionCreators(
+      alreadyPayedActions.updateAlreadyPayed,
+      dispatch
+    ),
+    resetShopList: bindActionCreators(shopListActions.resetShopList, dispatch),
   };
 }
 

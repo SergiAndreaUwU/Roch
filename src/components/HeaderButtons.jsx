@@ -3,21 +3,30 @@ import React from "react";
 import styles from "./header.module.sass";
 import { FaUserCheck, FaArrowLeft } from "react-icons/fa";
 import {AiFillPrinter} from "react-icons/ai"
+import {BsJournalPlus} from "react-icons/bs"
 import { updateSelectedMenuCategory } from "../redux/actions/selectedMenuCategoryAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import * as shopListActions from "../redux/actions/shopListActions"
 
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { useReactToPrint } from 'react-to-print';
-
+import * as alreadyPayedActions from "../redux/actions/alreadyPayedActions"
+import * as noTicketActions from "../redux/actions/noTicketActions";
+import * as paymentInfoActions from "../redux/actions/paymentInfoActions";
 
 const HeaderButtons = ({
   ticketRef,
   //redux
   selectedMenuCategory,
   updateSelectedMenuCategory,
+  alreadyPayed,
+  reduxResetShopList,
+  updateAlreadyPayed,
+  reduxIncrementNoTicket,
+  reduxResetPaymentInfo
 }) => {
   let navigate = useNavigate();
   const handlePrint = useReactToPrint({
@@ -40,6 +49,15 @@ const HeaderButtons = ({
     }
   };
 
+  const handleNewTicket=()=>{
+    if(alreadyPayed){
+      reduxIncrementNoTicket()
+    }
+    reduxResetShopList()
+    reduxResetPaymentInfo()
+    updateAlreadyPayed(false)
+  }
+
   useEffect(() => {
     const arrPaths = window.location.pathname.split("/");
     const cPath = arrPaths[arrPaths.length - 1];
@@ -52,8 +70,8 @@ const HeaderButtons = ({
         <button className="icon-button" style={{ marginRight: "13px" }}>
           <FaUserCheck className="icon-size" />
         </button>
-        <button className="icon-button" style={{ marginRight: "13px" }}>
-          <FaUserCheck className="icon-size" />
+        <button className="icon-button" style={{ marginRight: "13px" }} onClick={handleNewTicket}>
+          <BsJournalPlus className="icon-size" />
         </button>
         <button className="icon-button" onClick={handlePrint}>
           <AiFillPrinter className="icon-size" />
@@ -90,6 +108,7 @@ const HeaderButtons = ({
 function mapStateToProps(state) {
   return {
     selectedMenuCategory: state.selectedMenuCategory,
+    alreadyPayed: state.alreadyPayed
   };
 }
 
@@ -97,6 +116,22 @@ function mapDispatchToProps(dispatch) {
   return {
     updateSelectedMenuCategory: bindActionCreators(
       updateSelectedMenuCategory,
+      dispatch
+    ),
+    reduxResetShopList: bindActionCreators(
+      shopListActions.resetShopList,
+      dispatch
+    ),
+    updateAlreadyPayed: bindActionCreators(
+      alreadyPayedActions.updateAlreadyPayed,
+      dispatch
+    ),
+    reduxIncrementNoTicket: bindActionCreators(
+      noTicketActions.incrementNoTicket,
+      dispatch
+    ),
+    reduxResetPaymentInfo: bindActionCreators(
+      paymentInfoActions.resetPaymentInfo,
       dispatch
     ),
   };
