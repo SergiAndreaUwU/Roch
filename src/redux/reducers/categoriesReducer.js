@@ -42,19 +42,19 @@ export default function categoriesReducer(
     }
     //SWITCH PRODUCT
     case types.SWITCH_ACTIVE_PRODUCT_SUCCESS: {
-      const found = state.findIndex(
-        (category) => category.id === action.category.id
-      );
-      if (found >= 0) {
-        const newCategories = state.map((el, index) => {
-          if (index === found) {
-            return { ...el, active: !el.active };
+       const newCategories=state.map((category,i)=>{
+         const newCategories= category.products.map((product,j)=>{
+          if(product.id===action.product.id){
+            const newProduct={...product,active:!product.active}
+            return newProduct
           }
-          return el;
-        });
-        return newCategories;
-      }
-      return state;
+          return product
+         })
+
+         return {...category,products:newCategories}
+       }) 
+       debugger
+      return newCategories;
     }
     default:
       return state;

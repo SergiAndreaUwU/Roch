@@ -11,9 +11,16 @@ import { Tabs, Tab } from "react-bootstrap";
 import * as categoriesActions from "../../redux/actions/categoriesActions";
 
 import Switch from "react-switch";
-export const Catalogo = ({ categories, switchActiveCategory }) => {
+export const Catalogo = ({
+  categories,
+  switchActiveCategory,
+  switchActiveProduct,
+}) => {
   const agCategoryGrid = useRef();
   const agProductGrid = useRef();
+
+  //don't loose selection on refresh/navigatint between tabs
+  let asdasd = {};
 
   const [selectedCategoryRow, setSelectedCategoryRow] = useState({});
   const [selectedProductRow, setSelectedProductRow] = useState({});
@@ -51,11 +58,17 @@ export const Catalogo = ({ categories, switchActiveCategory }) => {
     />
   );
 
+  const test = (data) => {
+    console.log(data);
+    debugger;
+    switchActiveProduct(data);
+  };
+
   const ActiveProductSwitch = (props) => (
     <Switch
       className="react-switch"
       onChange={() => {
-        // switchActiveCategory(props.data);
+        test(props.data);
       }}
       checked={props.data.active}
       aria-labelledby="neat-label"
@@ -65,18 +78,34 @@ export const Catalogo = ({ categories, switchActiveCategory }) => {
   );
 
   const getSelectedCategoryRow = () => {
-    //sometimes is undefined, so assigning with ternary operator to avoid crashing when 
+    //sometimes is undefined, so assigning with ternary operator to avoid crashing when
     //getting is keys
-    setSelectedCategoryRow(agCategoryGrid.current.api.getSelectedRows()[0] || {});
-    
+    const asd = agCategoryGrid.current.api.getSelectedRows()[0] || {};
+    setSelectedCategoryRow(asd);
+    asdasd = asd;
   };
+
+  // useEffect(()=>{
+  //   alert("changed:"+JSON.stringify(selectedCategoryRow))
+  // },[selectedCategoryRow])
+
+  //update selectedCategoryRow when updated products
+  useEffect(() => {
+    if (Object.keys(selectedCategoryRow).length > 0) {
+      const newCategory = categories.find(
+        (category) => category.id === selectedCategoryRow.id
+      );
+      debugger;
+      setSelectedCategoryRow(newCategory);
+    }
+  }, [categories]);
 
   // useEffect(()=>{
   //   agCategoryGrid.current.api.setSelected(selectedCategoryRow)
   // },[])
 
   const getSelectedProductRow = () => {
-    setSelectedProductRow(agProductGrid.current.api.getSelectedRows()[0]  || {});
+    setSelectedProductRow(agProductGrid.current.api.getSelectedRows()[0] || {});
   };
   const ActionColumn = () => (
     <div>
@@ -84,7 +113,7 @@ export const Catalogo = ({ categories, switchActiveCategory }) => {
     </div>
   );
 
-  const [categoriesColumns] = useState([
+  const categoriesColumns = [
     {
       headerName: "",
       suppressSizeToFit: true,
@@ -100,8 +129,8 @@ export const Catalogo = ({ categories, switchActiveCategory }) => {
       width: 80,
       cellRenderer: ActionColumn,
     },
-  ]);
-  const [productsColumns] = useState([
+  ];
+  const productsColumns = [
     {
       field: "switch",
       headerName: "",
@@ -125,7 +154,7 @@ export const Catalogo = ({ categories, switchActiveCategory }) => {
       width: 80,
       cellRenderer: ActionColumn,
     },
-  ]);
+  ];
 
   return (
     <div className={styles.categoria}>
@@ -171,7 +200,6 @@ export const Catalogo = ({ categories, switchActiveCategory }) => {
                     rowData={selectedCategoryRow?.products}
                     columnDefs={productsColumns}
                     rowSelection={"single"}
-                    onFirstDataRendered={onFirstDataRendered}
                     onSelectionChanged={getSelectedProductRow}
                   ></AgGridReact>
                 </div>
@@ -197,6 +225,10 @@ function mapDispatchToProps(dispatch) {
   return {
     switchActiveCategory: bindActionCreators(
       categoriesActions.switchActiveCategory,
+      dispatch
+    ),
+    switchActiveProduct: bindActionCreators(
+      categoriesActions.switchActiveProduct,
       dispatch
     ),
   };
