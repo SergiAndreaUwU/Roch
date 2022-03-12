@@ -9,7 +9,6 @@ export default function paymentInfoReducer(
   switch (action.type) {
     case types.UPDATE_PAYMENT_INFO:
       const newPaymentInfo = { ...state.paymentInfo, ...action.paymentInfo };
-      debugger;
       return newPaymentInfo;
     case types.RESET_PAYMENT_INFO:
       return {

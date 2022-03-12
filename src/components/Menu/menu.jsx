@@ -22,6 +22,10 @@ const Menu = React.forwardRef(
       paymentInfo,
       updatedPaymentInfo,
       incrementNoTicket,
+      deleteOneFromShopList,
+      reduxAddOneToShopListWithIndex,
+      addToShopList,
+      deleteFromShopList
     },
     ref
   ) => {
@@ -36,7 +40,6 @@ const Menu = React.forwardRef(
 
     const callbackSetPaymentInfo = (value) => {
       const updatedPaymentInfoObj = { ...paymentInfo, ...value };
-      debugger;
       updatedPaymentInfo(updatedPaymentInfoObj);
     };
 
@@ -58,7 +61,17 @@ const Menu = React.forwardRef(
         {/* left */}
         <div className={styles.left} ref={componentRef}>
           <div className={styles.shopListContainer}>
-            <Ticket noTicket={noTicket} cajeroNombre={cajeroNombre} />
+            <Ticket
+              noTicket={noTicket}
+              cajeroNombre={cajeroNombre}
+              shopList={shopList}
+              deleteOneFromShopList={
+                deleteOneFromShopList
+              }
+              reduxAddOneToShopListWithIndex={reduxAddOneToShopListWithIndex}
+              addToShopList={addToShopList}
+              deleteFromShopList={deleteFromShopList}
+            />
             <div className={styles.reservedSpace}></div>
           </div>
           <div className={styles.shopInfo}>
@@ -96,12 +109,12 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    reduxAddToShopListWithIndex: bindActionCreators(
-      shopListActions.addToShopListWithIndex,
+    reduxAddOneToShopListWithIndex: bindActionCreators(
+      shopListActions.addOneToShopListWithIndex,
       dispatch
     ),
-    reduxDeleteFromShopListWithIndex: bindActionCreators(
-      shopListActions.deleteFromShopListWithIndex,
+    deleteOneFromShopList: bindActionCreators(
+      shopListActions.deleteOneFromShopList,
       dispatch
     ),
     reduxResetShopList: bindActionCreators(
@@ -120,7 +133,8 @@ function mapDispatchToProps(dispatch) {
       paymentInfoActions.updatePaymentInfo,
       dispatch
     ),
-
+    addToShopList: bindActionCreators(shopListActions.addToShopList, dispatch),
+    deleteFromShopList: bindActionCreators(shopListActions.deleteFromShopList, dispatch)
   };
 }
 

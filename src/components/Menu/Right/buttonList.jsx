@@ -11,7 +11,7 @@ import * as alreadyPayedActions from "../../../redux/actions/alreadyPayedActions
 const ButtonList = ({
   selectedCatalogueCategory,
   updateSelectedMenuCategory,
-  categories,
+  activeCategories,
   addToShopList,
   alreadyPayed,
   updateAlreadyPayed,
@@ -28,6 +28,7 @@ const ButtonList = ({
 
   const handleProducts = (selected, index) => {
     console.log(selected);
+    debugger
     if (alreadyPayed) {
       //increment number ticket, reset shop list
       //and continue
@@ -68,17 +69,17 @@ const ButtonList = ({
     const urlParams = new URLSearchParams(queryString);
     paramProductoId = urlParams.get("producto");
     console.log(paramProductoId);
-    setStateData(categories[paramProductoId].products);
+    setStateData(activeCategories[paramProductoId].products);
   };
 
   const loadCategorias = () => {
     //checar si categories de REDUX ya esta cargado
     //si esta cargado, asignar a setStateData para hacer display con map
     //sino esta cargado, cargar y asignar a setStateData para hacer display con map
-    if (categories?.length === 0) {
+    if (activeCategories?.length === 0) {
       //no cargado, cargar
     } else {
-      setStateData(categories);
+      setStateData(activeCategories);
     }
   };
 
@@ -109,7 +110,7 @@ const ButtonList = ({
 
   return (
     <div className={styles.buttonsContainer}>
-      {stateData.map((el, index) => (
+      {stateData.map((el, index) => el.active?(
         <button
           className={styles.button}
           onClick={(val) => {
@@ -118,14 +119,17 @@ const ButtonList = ({
         >
           {el.nombre}
         </button>
-      ))}
+      ):<></>
+      )}
     </div>
   );
 };
 
 function mapStateToProps(state) {
+
+  const activeCategories=state.categories.filter(category=>category.active)
   return {
-    categories: state.categories,
+    activeCategories,
     selectedCatalogueCategory: state.selectedCatalogueCategory,
     alreadyPayed: state.alreadyPayed,
   };

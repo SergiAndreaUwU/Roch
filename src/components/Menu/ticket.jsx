@@ -1,14 +1,40 @@
 import React from "react";
 import styles from "./menu.module.sass";
+import {BsTrash} from "react-icons/bs"
+import { IoIosAddCircleOutline,IoIosAddCircle} from "react-icons/io"
+import {AiOutlineMinusCircle,AiFillMinusCircle} from "react-icons/ai"
 
 //forwardRef required for printing
-export const Ticket = React.forwardRef(({ noTicket,cajeroNombre }, ref) => {
+export const Ticket = React.forwardRef(({ noTicket, cajeroNombre,shopList,reduxAddOneToShopListWithIndex,deleteOneFromShopList,addToShopList,deleteFromShopList }, ref) => {
+
+  const addOne=(values,index)=>{
+    addToShopList(values)
+  }
+  const deleteOne=(values,index)=>{
+    deleteOneFromShopList(values)
+  }
+  const deleteAll=(values,index)=>{
+    deleteFromShopList(values)
+  }
   return (
     <div className={styles.shopList} ref={ref}>
       <div className={styles.ticketHeader}>
-        <div className={styles.cajero}><span style={{fontWeight:"bold",marginRight:"10px"}}>Cajero:</span>{cajeroNombre}</div>
+        <div className={styles.cajero}>
+          <span style={{ fontWeight: "bold", marginRight: "10px" }}>
+            Cajero:
+          </span>
+          {cajeroNombre}
+        </div>
         <div className={styles.noTicket}>
-          <div style={{ flexBasis: "20%",fontWeight:"bold",marginRight:"10px" }}>No.Ticket:</div>
+          <div
+            style={{
+              flexBasis: "20%",
+              fontWeight: "bold",
+              marginRight: "10px",
+            }}
+          >
+            No.Ticket:
+          </div>
           <div style={{ flexBasis: "50%", textAlign: "right" }}>{noTicket}</div>
         </div>
       </div>
@@ -17,8 +43,20 @@ export const Ticket = React.forwardRef(({ noTicket,cajeroNombre }, ref) => {
         style={{ display: "flex", flexFlow: "row wrap" }}
       >
         {" "}
-        {[1, 2, 3, 4, 5, 6, 7].map((el) => (
-          <div style={{ width: "33.3%", border: "1px solid red" }}>{el}</div>
+        <div style={{ width: "30%", border: "1px solid red",fontWeight:"bold" ,paddingLeft:"10px" }} >Cantidad</div>
+            <div style={{ width: "50%", border: "1px solid red",fontWeight:"bold",paddingLeft:"10px"  }} >Descripción</div>
+            <div style={{ width: "20%", border: "1px solid red",fontWeight:"bold",paddingLeft:"10px" }}>Monto</div>
+        {shopList.map((el,index) => (
+          <>
+            <div style={{ width: "30%", border: "1px solid red",display:"flex", flexFlow:"row nowrap" }} key={el+"1"}>
+              <div style={{flexBasis:"25%"}}><AiOutlineMinusCircle onClick={()=>{deleteOne(el,index)}} style={{width:"30px",height:"30px"}}/></div>
+              <div style={{flexBasis:"20%"}}>{el.quantity}</div>
+              <div style={{flexBasis:"35%"}}><IoIosAddCircleOutline onClick={()=>{addOne(el,index)}} style={{width:"30px",height:"30px"}}/></div>
+              <div style={{flexBasis:"20%"}}><BsTrash onClick={()=>{deleteAll(el,index)}} style={{width:"30px",height:"30px"}}/></div>
+            </div>
+            <div style={{ width: "50%", border: "1px solid red" }} key={el+"2"}>{el.nombre}</div>
+            <div style={{ width: "20%", border: "1px solid red",textAlign:"right" }} key={el+"3"}>${(el.price*el.quantity).toFixed(2)}</div>
+          </>
         ))}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae
         urna malesuada, ultricies enim non, ullamcorper lacus. Nunc feugiat
