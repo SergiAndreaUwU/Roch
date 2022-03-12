@@ -17,6 +17,8 @@ export const Catalogo = ({
   categories,
   switchActiveCategory,
   switchActiveProduct,
+  deleteCategory,
+  deleteProduct,
 }) => {
   const agCategoryGrid = useRef();
   const agProductGrid = useRef();
@@ -28,21 +30,12 @@ export const Catalogo = ({
   const [selectedProductRow, setSelectedProductRow] = useState({});
   const [showModalAdd, setShowModalAdd] = useState(false);
 
-  const [rowData] = useState([
-    {
-      producto: "sandwich",
-      alias: "sandwich",
-      descripcion: "un sandwich",
-      precio: 30,
-    },
-  ]);
-
   const handleSave = () => {
     alert("guardado");
   };
 
   const addCategory = () => {
-    setShowModalAdd(true)
+    setShowModalAdd(true);
   };
 
   const onFirstDataRendered = useCallback((params) => {
@@ -88,6 +81,18 @@ export const Catalogo = ({
     />
   );
 
+  const deleteFromRedux = (props) => {
+    console.log(props.data);
+    if (props.data.products) {
+      //es una categoria a borrar
+      deleteCategory(props.data);
+    } else {
+      //es un producto a borrar
+      deleteProduct(props.data)
+    }
+    debugger;
+  };
+
   const getSelectedCategoryRow = () => {
     //sometimes is undefined, so assigning with ternary operator to avoid crashing when
     //getting is keys
@@ -106,8 +111,8 @@ export const Catalogo = ({
       const newCategory = categories.find(
         (category) => category.id === selectedCategoryRow.id
       );
-      debugger;
-      setSelectedCategoryRow(newCategory);
+      //when deleting, selectedCategoryRow can be undefined
+      setSelectedCategoryRow(newCategory || {});
     }
   }, [categories]);
 
@@ -118,9 +123,13 @@ export const Catalogo = ({
   const getSelectedProductRow = () => {
     setSelectedProductRow(agProductGrid.current.api.getSelectedRows()[0] || {});
   };
-  const ActionColumn = () => (
+  const ActionColumn = (props) => (
     <div>
-      <BsTrash />
+      <BsTrash
+        onClick={() => {
+          deleteFromRedux(props);
+        }}
+      />
     </div>
   );
 
@@ -169,10 +178,12 @@ export const Catalogo = ({
 
   return (
     <>
-      <ModalAdd show={showModalAdd} handleClose={()=>{
-        setShowModalAdd(false)
-      }}
-      categories={categories}
+      <ModalAdd
+        show={showModalAdd}
+        handleClose={() => {
+          setShowModalAdd(false);
+        }}
+        categories={categories}
       />
       <div className={styles.categoria}>
         <div className={styles.container}>
@@ -257,6 +268,14 @@ function mapDispatchToProps(dispatch) {
     ),
     switchActiveProduct: bindActionCreators(
       categoriesActions.switchActiveProduct,
+      dispatch
+    ),
+    deleteCategory: bindActionCreators(
+      categoriesActions.deleteCategorySuccess,
+      dispatch
+    ),
+    deleteProduct: bindActionCreators(
+      categoriesActions.deleteProductSuccess,
       dispatch
     ),
   };

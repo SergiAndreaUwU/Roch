@@ -12,18 +12,27 @@ export default function categoriesReducer(
       return state.map((category) =>
         category.id === action.category.id ? action.category : category
       );
-    case types.DELETE_CATEGORY_SUCCESS:
-      return state.map((category) =>
-        category.id === action.category.id ? action.category : category
+    case types.DELETE_CATEGORY_SUCCESS: {
+      const newCategories = state.filter(
+        (category) => category.id !== action.category.id
       );
+      debugger;
+      return newCategories;
+    }
     case types.LOAD_CATEGORY_SUCCESS:
       return action.categories;
     //PRODUCTS
     case types.CREATE_PRODUCTS_SUCCESS:
       return state;
-    case types.DELETE_PRODUCTS_SUCCESS:
-      return state;
+    case types.DELETE_PRODUCTS_SUCCESS: {
+      const newCategories=state.map((category)=>{
+        const newProducts=category.products.filter((product)=>product.id!==action.product.id)
+        return {...category,products:newProducts}
+      })
+      debugger
 
+      return newCategories;
+    }
     //SWITCH CATEGORY
     case types.SWITCH_ACTIVE_CATEGORY_SUCCESS: {
       const found = state.findIndex(
@@ -42,18 +51,18 @@ export default function categoriesReducer(
     }
     //SWITCH PRODUCT
     case types.SWITCH_ACTIVE_PRODUCT_SUCCESS: {
-       const newCategories=state.map((category,i)=>{
-         const newCategories= category.products.map((product,j)=>{
-          if(product.id===action.product.id){
-            const newProduct={...product,active:!product.active}
-            return newProduct
+      const newCategories = state.map((category, i) => {
+        const newCategories = category.products.map((product, j) => {
+          if (product.id === action.product.id) {
+            const newProduct = { ...product, active: !product.active };
+            return newProduct;
           }
-          return product
-         })
+          return product;
+        });
 
-         return {...category,products:newCategories}
-       }) 
-       debugger
+        return { ...category, products: newCategories };
+      });
+      debugger;
       return newCategories;
     }
     default:

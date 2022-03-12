@@ -14,7 +14,7 @@ export function updateCategorySuccess(category) {
 }
 
 export function deleteCategorySuccess(category) {
-  return { type: types.UPDATE_CATEGORY_SUCCESS, category };
+  return { type: types.DELETE_CATEGORY_SUCCESS, category };
 }
 
 export function loadCategory() {
