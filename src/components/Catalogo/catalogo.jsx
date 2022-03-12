@@ -7,6 +7,8 @@ import { bindActionCreators } from "redux";
 import { BsTrash } from "react-icons/bs";
 import { FaSave } from "react-icons/fa";
 import { Tabs, Tab } from "react-bootstrap";
+import { BiAddToQueue } from "react-icons/bi";
+import ModalAdd from "./modalAdd";
 
 import * as categoriesActions from "../../redux/actions/categoriesActions";
 
@@ -24,6 +26,7 @@ export const Catalogo = ({
 
   const [selectedCategoryRow, setSelectedCategoryRow] = useState({});
   const [selectedProductRow, setSelectedProductRow] = useState({});
+  const [showModalAdd, setShowModalAdd] = useState(false);
 
   const [rowData] = useState([
     {
@@ -33,6 +36,14 @@ export const Catalogo = ({
       precio: 30,
     },
   ]);
+
+  const handleSave = () => {
+    alert("guardado");
+  };
+
+  const addCategory = () => {
+    setShowModalAdd(true)
+  };
 
   const onFirstDataRendered = useCallback((params) => {
     agCategoryGrid.current.api.sizeColumnsToFit();
@@ -157,61 +168,78 @@ export const Catalogo = ({
   ];
 
   return (
-    <div className={styles.categoria}>
-      <div className={styles.container}>
-        <div className={styles.titleContainer}>
-          <h1>Cátalogos</h1>
-        </div>
-        <div className={styles.tableContainer}>
-          <Tabs defaultActiveKey="categorias" id="uncontrolled-tab-example">
-            <Tab eventKey="categorias" title="Categorias">
-              <div style={{ height: "100%" }}>
-                <div
-                  className="ag-theme-alpine"
-                  style={{ height: "100%", width: "100%" }}
-                >
-                  <AgGridReact
-                    ref={agCategoryGrid}
-                    key={"categories-table"}
-                    rowData={categories}
-                    columnDefs={categoriesColumns}
-                    rowSelection={"single"}
-                    onFirstDataRendered={onFirstDataRendered}
-                    onSelectionChanged={getSelectedCategoryRow}
-                  ></AgGridReact>
+    <>
+      <ModalAdd show={showModalAdd} handleClose={()=>{
+        setShowModalAdd(false)
+      }}
+      categories={categories}
+      />
+      <div className={styles.categoria}>
+        <div className={styles.container}>
+          <div className={styles.titleContainer}>
+            <h1>Cátalogos</h1>
+          </div>
+          <div className={styles.tableContainer}>
+            <div className={styles.headerButtons}>
+              <BiAddToQueue
+                style={{ width: "30px", height: "30px", marginRight: "20px" }}
+                onClick={addCategory}
+              />
+              <FaSave
+                style={{ width: "30px", height: "30px" }}
+                onClick={handleSave}
+              />
+            </div>
+            <Tabs defaultActiveKey="categorias" id="uncontrolled-tab-example">
+              <Tab eventKey="categorias" title="Categorias">
+                <div style={{ height: "100%" }}>
+                  <div
+                    className="ag-theme-alpine"
+                    style={{ height: "100%", width: "100%" }}
+                  >
+                    <AgGridReact
+                      ref={agCategoryGrid}
+                      key={"categories-table"}
+                      rowData={categories}
+                      columnDefs={categoriesColumns}
+                      rowSelection={"single"}
+                      onFirstDataRendered={onFirstDataRendered}
+                      onSelectionChanged={getSelectedCategoryRow}
+                    ></AgGridReact>
+                  </div>
                 </div>
-              </div>
-            </Tab>
-            <Tab
-              eventKey="productos"
-              title="Productos"
-              disabled={
-                Object.keys(selectedCategoryRow).length > 0 ? false : true
-              }
-            >
-              <div style={{ height: "100%" }}>
-                <div
-                  className="ag-theme-alpine"
-                  style={{ height: "100%", width: "100%" }}
-                >
-                  <AgGridReact
-                    ref={agProductGrid}
-                    key={"products-table"}
-                    rowData={selectedCategoryRow?.products}
-                    columnDefs={productsColumns}
-                    rowSelection={"single"}
-                    onSelectionChanged={getSelectedProductRow}
-                  ></AgGridReact>
+              </Tab>
+              <Tab
+                eventKey="productos"
+                title="Productos"
+                disabled={
+                  Object.keys(selectedCategoryRow).length > 0 ? false : true
+                }
+              >
+                <div style={{ height: "100%" }}>
+                  <div
+                    className="ag-theme-alpine"
+                    style={{ height: "100%", width: "100%" }}
+                  >
+                    <AgGridReact
+                      ref={agProductGrid}
+                      key={"products-table"}
+                      rowData={selectedCategoryRow?.products}
+                      columnDefs={productsColumns}
+                      rowSelection={"single"}
+                      onSelectionChanged={getSelectedProductRow}
+                    ></AgGridReact>
+                  </div>
                 </div>
-              </div>
-            </Tab>
-            <Tab eventKey="cajeros" title="Cajeros" disabled>
-              c
-            </Tab>
-          </Tabs>
+              </Tab>
+              <Tab eventKey="cajeros" title="Cajeros" disabled>
+                c
+              </Tab>
+            </Tabs>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
