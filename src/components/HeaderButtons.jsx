@@ -67,7 +67,7 @@ const HeaderButtons = ({
   return (
     <div className={styles.containerButtonsHeader}>
       <div className={styles.left}>
-        <button className="icon-button" style={{ marginRight: "13px" }}>
+        <button className="icon-button" style={{ marginRight: "13px" }} disabled>
           <FaUserCheck className="icon-size" />
         </button>
         <button className="icon-button" style={{ marginRight: "13px" }} onClick={handleNewTicket}>

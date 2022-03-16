@@ -6,9 +6,9 @@ const ModalAdd = ({ show, handleClose, categories }) => {
   const { register, handleSubmit } = useForm();
   const [selectedRadio, setSelectedRadio] = useState("");
 
-  const refreshPage=()=>{
-      window.location.href= "/catalogo"
-  }
+  // const refreshPage = () => {
+  //   window.location.href = "/catalogo";
+  // };
 
   const onSubmit = (values) => {
     debugger;
@@ -23,8 +23,8 @@ const ModalAdd = ({ show, handleClose, categories }) => {
         };
         //despues de hacer la peticion, pedir el id que se genero para agregar {...sendData,id:res.data.id} a redux
 
-        //de mientras se hara un refresh de la pagina si se contesta un OK 
-        refreshPage()
+        //de mientras se hara un refresh de la pagina si se contesta un OK
+        // refreshPage();
         break;
       }
       case "product": {
@@ -39,8 +39,8 @@ const ModalAdd = ({ show, handleClose, categories }) => {
         };
         //despues de hacer la peticion, pedir el id que se genero para agregar {...sendData,id:res.data.id} a redux
 
-        //de mientras se hara un refresh de la pagina si se contesta un OK 
-        refreshPage()
+        //de mientras se hara un refresh de la pagina si se contesta un OK
+        // refreshPage();
 
         break;
       }
@@ -104,7 +104,7 @@ const ModalAdd = ({ show, handleClose, categories }) => {
               />
               <Form.Label htmlFor="">Descripcion:</Form.Label>
               <Form.Control
-                type="text"
+                as="textarea"
                 aria-describedby="descripcion producto"
                 {...register("descripcion", { required: true })}
               />
@@ -134,7 +134,7 @@ const ModalAdd = ({ show, handleClose, categories }) => {
               />
               <Form.Label htmlFor="">Descripcion:</Form.Label>
               <Form.Control
-                type="text"
+                as="textarea"
                 aria-describedby="descripcion producto"
                 {...register("descripcion", { required: true })}
               />

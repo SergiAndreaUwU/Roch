@@ -8,7 +8,9 @@ import { BsTrash } from "react-icons/bs";
 import { FaSave } from "react-icons/fa";
 import { Tabs, Tab } from "react-bootstrap";
 import { BiAddToQueue } from "react-icons/bi";
+import { ToastContainer, toast } from "react-toastify";
 import ModalAdd from "./modalAdd";
+import ModalLoad from "../utils/sharedComponents/modalLoad"
 
 import * as categoriesActions from "../../redux/actions/categoriesActions";
 
@@ -27,11 +29,27 @@ export const Catalogo = ({
   let asdasd = {};
 
   const [selectedCategoryRow, setSelectedCategoryRow] = useState({});
+
+  const notify = (text = "Datos actualizados correctamente") => toast.success(text,{theme: "colored"});
   const [selectedProductRow, setSelectedProductRow] = useState({});
   const [showModalAdd, setShowModalAdd] = useState(false);
+  const [showModalLoad, setShowModalLoad] = useState(false);
 
-  const handleSave = () => {
-    alert("guardado");
+
+  const mockSave=()=>{
+    return new Promise((resolve)=>{
+      setTimeout(()=>{
+        resolve()
+      },[2000])
+    })
+  }
+
+  const handleSave = async() => {
+    
+    setShowModalLoad(true)
+    await mockSave()
+    setShowModalLoad(false)
+    notify("Datos guardados correctamente");
   };
 
   const addCategory = () => {
@@ -88,7 +106,7 @@ export const Catalogo = ({
       deleteCategory(props.data);
     } else {
       //es un producto a borrar
-      deleteProduct(props.data)
+      deleteProduct(props.data);
     }
     debugger;
   };
@@ -178,12 +196,20 @@ export const Catalogo = ({
 
   return (
     <>
+      <ToastContainer 
+      position="top-center"
+      autoClose= {5000}
+
+      />
       <ModalAdd
         show={showModalAdd}
         handleClose={() => {
           setShowModalAdd(false);
         }}
         categories={categories}
+      />
+      <ModalLoad
+        show={showModalLoad}
       />
       <div className={styles.categoria}>
         <div className={styles.container}>
