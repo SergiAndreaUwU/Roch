@@ -14,7 +14,7 @@ $shopInfoHeight: 15vh
     padding-left: 7px
     padding-right: 5px
     padding-bottom: 15px
-    background-color: gray
+    background-color: #adadad
     border: 1px solid black
     display: flex
     flex-direction: row
@@ -22,7 +22,7 @@ $shopInfoHeight: 15vh
 
 .left
     flex-basis: $flexBasisLeft
-    border: 1px solid black
+    // border: 1px solid black
     background-color: purple
 
     background-color: blue
@@ -30,14 +30,15 @@ $shopInfoHeight: 15vh
     height: 100%
     position: relative
     .shopListContainer
-        background-color: rgb(222, 222, 222)
+        // background-color: rgb(222, 222, 222)
+        background-color: white
 
         width: 100%
         height: 100%
         overflow-y: scroll
 
     .shopList
-        border: 1px solid black
+        // border: 1px solid black
         width: 99%
         display: flex
         flex-direction: column
@@ -63,18 +64,20 @@ $shopInfoHeight: 15vh
         height: $shopInfoHeight
 
     .shopInfo
-        background-color: red
         width: 300px
         height: $shopInfoHeight
         position: absolute
         right: 0%
         bottom: 0%
-
+        border-top: 1px solid
+        border-left: 1px solid
+        border-bottom: 1px solid
+        padding-left: 10px
         font-size: 1.5rem
 
 .right
     flex-basis: calc(100% - $flexBasisLeft)
-    border: 1px dashed white
+    // border: 1px dashed white
 
     display: flex
     flex-direction: column
@@ -82,7 +85,7 @@ $shopInfoHeight: 15vh
     .buttonsContainer
         color: red
         flex-basis: $heightButtons
-        border: 1px solid red
+        // border: 1px solid black
         display: flex
         flex-direction: row
         flex-wrap: wrap
@@ -97,7 +100,7 @@ $shopInfoHeight: 15vh
             margin-left: $marginLeftButton
             //END GRID LIKE
             text-align: center
-            border: 1px solid red
+            // border: 1px solid red
             cursor: pointer
             background-color: rgb(222, 222, 222)
             &:hover
@@ -118,4 +121,4 @@ $shopInfoHeight: 15vh
             left: $marginLeftButton
             //END GRID LIKE
             text-align: center
-            border: 1px solid red
+            // border: 1px solid red

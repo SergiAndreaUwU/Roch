@@ -25,7 +25,8 @@ const Menu = React.forwardRef(
       deleteOneFromShopList,
       reduxAddOneToShopListWithIndex,
       addToShopList,
-      deleteFromShopList
+      deleteFromShopList,
+      alreadyPayed
     },
     ref
   ) => {
@@ -91,6 +92,7 @@ const Menu = React.forwardRef(
           callbackSetPaymentInfo={callbackSetPaymentInfo}
           paymentInfo={paymentInfo}
           updateAlreadyPayed={updateAlreadyPayed}
+          alreadyPayed={alreadyPayed}
         />
       </div>
     );
@@ -104,6 +106,7 @@ function mapStateToProps(state) {
     shopList: state.shopList,
     noTicket: state.noTicket,
     paymentInfo: state.paymentInfo,
+    alreadyPayed: state.alreadyPayed
   };
 }
 

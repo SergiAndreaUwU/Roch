@@ -10,6 +10,7 @@ const Right = ({
   callbackSetPaymentInfo,
   paymentInfo,
   updateAlreadyPayed,
+  alreadyPayed
 }) => {
   const [showModalCobrar, setShowModalCobrar] = useState(false);
 
@@ -35,7 +36,7 @@ const Right = ({
       <Outlet />
 
       <div className={styles.containerCobrar}>
-        <button className={styles.cobrarButton} onClick={handleClick}>
+        <button className={styles.cobrarButton} onClick={handleClick} disabled={alreadyPayed}>
           $
           <br />
           COBRAR

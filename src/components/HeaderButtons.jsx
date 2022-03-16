@@ -70,10 +70,10 @@ const HeaderButtons = ({
         <button className="icon-button" style={{ marginRight: "13px" }} disabled>
           <FaUserCheck className="icon-size" />
         </button>
-        <button className="icon-button" style={{ marginRight: "13px" }} onClick={handleNewTicket}>
+        <button className={`icon-button ${alreadyPayed && currentPath !== "catalogo"? "glow":""}`} style={{ marginRight: "13px" }} onClick={handleNewTicket} disabled={currentPath === "catalogo"}>
           <BsJournalPlus className="icon-size" />
         </button>
-        <button className="icon-button" onClick={handlePrint}>
+        <button className="icon-button" onClick={handlePrint} disabled={!alreadyPayed || currentPath === "catalogo"}>
           <AiFillPrinter className="icon-size" />
         </button>
       </div>
@@ -89,7 +89,7 @@ const HeaderButtons = ({
           className="icon-button"
           style={{ flexBasis: "50%", display: "flex" }}
         >
-          <span style={{ margin: "auto" }}>{currentPath.toUpperCase()}</span>
+          <span style={{ margin: "auto",fontWeight:"bold" }}>{currentPath.toUpperCase()}</span>
         </div>
         <div style={{ flexBasis: "25%", display: "flex" }}>
           <button
@@ -97,6 +97,7 @@ const HeaderButtons = ({
             style={{ marginLeft: "auto" }}
             onClick={redirect}
           >
+            
             {currentPath == "catalogo" ? "CATEGORIA" : "CATALOGO"}
           </button>
         </div>
