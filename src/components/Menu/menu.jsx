@@ -50,7 +50,7 @@ const Menu = React.forwardRef(
 
     useEffect(() => {
       const totalPrice = shopList.reduce(
-        (acc, el) => acc + el.price * el.quantity,
+        (acc, el) => acc + el.precio * el.quantity,
         0
       );
 

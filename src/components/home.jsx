@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import styles from "./home.module.sass";
 import Catalogo from "./Catalogo/catalogo";
 import Menu from "./Menu/menu";
@@ -6,9 +6,14 @@ import Header from "./header";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 import ButtonList from "./Menu/Right/buttonList";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as categoriesActions from "../redux/actions/categoriesActions";
 
-const Home = () => {
+const Home = ({loadCategories}) => {
 
+  useEffect(()=>{
+    // loadCategories()
+  },[])
 
   const [ticketRef,setTicketRef]=useState(null)
 
@@ -42,9 +47,9 @@ const Home = () => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: {
-    }
+    loadCategories: bindActionCreators(categoriesActions.loadCategories, dispatch)
   };
 }
+
 
 export default connect(()=>{},mapDispatchToProps)(Home);

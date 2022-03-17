@@ -21,13 +21,16 @@ export default function categoriesReducer(
     }
     case types.LOAD_CATEGORY_SUCCESS:
       return action.categories;
+
+    case types.LOAD_CATEGORIES_SUCCESS:
+      return action.categories
     //PRODUCTS
     case types.CREATE_PRODUCTS_SUCCESS:
       return state;
     case types.DELETE_PRODUCTS_SUCCESS: {
       const newCategories=state.map((category)=>{
-        const newProducts=category.products.filter((product)=>product.id!==action.product.id)
-        return {...category,products:newProducts}
+        const newProducts=category.productos.filter((product)=>product.id!==action.product.id)
+        return {...category,productos:newProducts}
       })
       debugger
 
@@ -41,7 +44,7 @@ export default function categoriesReducer(
       if (found >= 0) {
         const newCategories = state.map((el, index) => {
           if (index === found) {
-            return { ...el, active: !el.active };
+            return { ...el, activo: !el.activo };
           }
           return el;
         });
@@ -52,15 +55,15 @@ export default function categoriesReducer(
     //SWITCH PRODUCT
     case types.SWITCH_ACTIVE_PRODUCT_SUCCESS: {
       const newCategories = state.map((category, i) => {
-        const newCategories = category.products.map((product, j) => {
+        const newCategories = category.productos.map((product, j) => {
           if (product.id === action.product.id) {
-            const newProduct = { ...product, active: !product.active };
+            const newProduct = { ...product, activo: !product.activo };
             return newProduct;
           }
           return product;
         });
 
-        return { ...category, products: newCategories };
+        return { ...category, productos: newCategories };
       });
       debugger;
       return newCategories;

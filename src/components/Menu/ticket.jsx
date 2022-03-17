@@ -55,7 +55,7 @@ export const Ticket = React.forwardRef(({ noTicket, cajeroNombre,shopList,reduxA
               <div style={{flexBasis:"20%"}}><BsTrash onClick={()=>{deleteAll(el,index)}} style={{width:"30px",height:"30px"}}/></div>
             </div>
             <div style={{ width: "50%" }} key={el+"2"}>{el.nombre}</div>
-            <div style={{ width: "20%",textAlign:"right" }} key={el+"3"}>${(el.price*el.quantity).toFixed(2)}</div>
+            <div style={{ width: "20%",textAlign:"right" }} key={el+"3"}>${(el.precio*el.quantity).toFixed(2)}</div>
           </>
         ))}
         

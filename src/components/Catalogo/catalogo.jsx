@@ -73,7 +73,7 @@ export const Catalogo = ({
       onChange={() => {
         switchActiveCategory(props.data);
       }}
-      checked={props.data.active}
+      checked={props.data.activo}
       aria-labelledby="neat-label"
       width={38}
       height={18}
@@ -92,7 +92,7 @@ export const Catalogo = ({
       onChange={() => {
         test(props.data);
       }}
-      checked={props.data.active}
+      checked={props.data.activo}
       aria-labelledby="neat-label"
       width={38}
       height={18}
@@ -101,7 +101,7 @@ export const Catalogo = ({
 
   const deleteFromRedux = (props) => {
     console.log(props.data);
-    if (props.data.products) {
+    if (props.data.productos) {
       //es una categoria a borrar
       deleteCategory(props.data);
     } else {
@@ -181,10 +181,10 @@ export const Catalogo = ({
     { field: "nombre", headerName: "Descripcion", resizable: true },
     {
       headerName: "Precio",
-      field: "price",
+      field: "precio",
       resizable: true,
       width: 80,
-      valueFormatter: (params) => currencyFormatter(params.data.price, "$"),
+      valueFormatter: (params) => currencyFormatter(params.data.precio, "$"),
     },
     {
       headerName: "Acciones",
@@ -261,7 +261,7 @@ export const Catalogo = ({
                     <AgGridReact
                       ref={agProductGrid}
                       key={"products-table"}
-                      rowData={selectedCategoryRow?.products}
+                      rowData={selectedCategoryRow?.productos}
                       columnDefs={productsColumns}
                       rowSelection={"single"}
                       onSelectionChanged={getSelectedProductRow}

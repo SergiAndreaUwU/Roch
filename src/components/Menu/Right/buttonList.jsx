@@ -69,7 +69,7 @@ const ButtonList = ({
     const urlParams = new URLSearchParams(queryString);
     paramProductoId = urlParams.get("producto");
     console.log(paramProductoId);
-    setStateData(activeCategories[paramProductoId].products);
+    setStateData(activeCategories[paramProductoId].productos);
   };
 
   const loadCategorias = () => {
@@ -110,7 +110,7 @@ const ButtonList = ({
 
   return (
     <div className={styles.buttonsContainer}>
-      {stateData.map((el, index) => el.active?(
+      {stateData.map((el, index) => el.activo?(
         <button
           className={styles.button}
           onClick={(val) => {
@@ -127,7 +127,7 @@ const ButtonList = ({
 
 function mapStateToProps(state) {
 
-  const activeCategories=state.categories.filter(category=>category.active)
+  const activeCategories=state.categories.filter(category=>category.activo)
   return {
     activeCategories,
     selectedCatalogueCategory: state.selectedCatalogueCategory,

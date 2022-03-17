@@ -19,7 +19,7 @@ const ModalAdd = ({ show, handleClose, categories }) => {
           nombre: values.nombre,
           descripcion: values.descripcion,
           alias: values.alias,
-          active: true, //default active
+          activo: true, //default active
         };
         //despues de hacer la peticion, pedir el id que se genero para agregar {...sendData,id:res.data.id} a redux
 
@@ -34,8 +34,8 @@ const ModalAdd = ({ show, handleClose, categories }) => {
           nombre: values.nombre,
           descripcion: values.descripcion,
           alias: values.alias,
-          active: true, //default active
-          price: values.precio - 1 + 1, //convert to int
+          activo: true, //default active
+          precio: values.precio - 1 + 1, //convert to int
         };
         //despues de hacer la peticion, pedir el id que se genero para agregar {...sendData,id:res.data.id} a redux
 
