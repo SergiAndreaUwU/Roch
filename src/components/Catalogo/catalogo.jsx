@@ -12,6 +12,8 @@ import { ToastContainer, toast } from "react-toastify";
 import ModalAdd from "./modalAdd";
 import ModalLoad from "../utils/sharedComponents/modalLoad"
 
+//test commit
+
 import * as categoriesActions from "../../redux/actions/categoriesActions";
 
 import Switch from "react-switch";
